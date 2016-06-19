@@ -39,7 +39,31 @@ def create_audio_player(instance, audio_file_path):
     audio_player.set_media(instance.media_new(audio_file_path))
     return audio_player
 
-#def play_track()
+class StrategyOne:
+    def __init__(self, audio_players):
+        self.audio_players = audio_players
+        self.tracks_playing = []
+        self.tracks_playing_count = 1
+        self.increasing = True
+
+    def update(self):
+        print(self.tracks_playing_count)
+        if(self.tracks_playing_count >= 12):
+            self.increasing = False
+        elif(self.tracks_playing_count <= 1):
+            self.increasing = True
+
+        if(self.increasing):
+            track_to_add = self.audio_players[self.tracks_playing_count]
+            self.tracks_playing.append(track_to_add)
+            track_to_add.play()
+            self.tracks_playing_count += 1
+        else:
+            track_to_stop = self.tracks_playing.pop()
+            track_to_stop.stop() # TODO confirm this works
+            self.tracks_playing_count -= 1
+        return
+
 instance = libvlc.Instance()
 audio_players = []
 for track_number in range(1,12+1):
@@ -48,29 +72,14 @@ for track_number in range(1,12+1):
     audio_player = create_audio_player(instance, audio_file_path)
     audio_players.append(audio_player)
 
-tracks_playing = []
-tracks_playing_count = 1
+strategy = StrategyOne(audio_players)
 #revolution_duration = 30 #TODO: Not relevant yet
-increasing = True
 while(True):
-        print(tracks_playing_count)
+    strategy.update()
+    time.sleep(randint(1,3))
+
+'''
     # Add a conditional here to only do all the below if the current LDR triggers
     #if(LDR_triggered):
     #if trigger.update(voltage) == RISING:
-        #TODO: Abstract into function or class to allow swapping out track play strategies:
-        if(tracks_playing_count >= 12):
-            increasing = False
-        elif(tracks_playing_count <= 1):
-            increasing = True
-
-        if(increasing):
-            track_to_add = audio_players[tracks_playing_count]
-            tracks_playing.append(track_to_add)
-            track_to_add.play()
-            tracks_playing_count += 1
-        else:
-            track_to_stop = tracks_playing.pop()
-            track_to_stop.stop() # TODO confirm this works
-            tracks_playing_count -= 1
-        # Below is just for debug:
-        time.sleep(randint(1,3)
+'''
