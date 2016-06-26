@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # Instructions here: http://blog.computerbacon.com/playing-audio-in-python-with-libvlc.html
 
 import libvlc
