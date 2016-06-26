@@ -65,14 +65,17 @@ class StrategyOne:
             self.tracks_playing_count -= 1
         return
 
-instance = libvlc.Instance()
-audio_players = []
-for track_number in range(1,12+1):
-    audio_file_path = "./resources/audio/default/musicbox_track{0}.wav".format(track_number)
-    print audio_file_path
-    audio_player = create_audio_player(instance, audio_file_path)
-    audio_players.append(audio_player)
+def load_tracks():
+    instance = libvlc.Instance()
+    audio_players = []
+    for track_number in range(1,12+1):
+        audio_file_path = "./resources/audio/default/musicbox_track{0}.wav".format(track_number)
+        print audio_file_path
+        audio_player = create_audio_player(instance, audio_file_path)
+        audio_players.append(audio_player)
+    return audio_players
 
+audio_players = load_tracks()
 strategy = StrategyOne(audio_players)
 #revolution_duration = 30 #TODO: Not relevant yet
 while(True):
