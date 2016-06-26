@@ -5,6 +5,7 @@ import libvlc
 import time
 from random import randint
 from strategy_one import StrategyOne
+from strategy_two import StrategyTwo
 
 '''
 class SchmittTrigger:
@@ -53,7 +54,7 @@ def load_tracks():
 
 if __name__ == '__main__':
     audio_players = load_tracks()
-    strategy = StrategyOne(audio_players)
+    strategy = StrategyTwo(audio_players)
     #revolution_duration = 30 #TODO: Not relevant yet
     while(True):
         strategy.update()
