@@ -75,12 +75,13 @@ def load_tracks():
         audio_players.append(audio_player)
     return audio_players
 
-audio_players = load_tracks()
-strategy = StrategyOne(audio_players)
-#revolution_duration = 30 #TODO: Not relevant yet
-while(True):
-    strategy.update()
-    time.sleep(randint(1,3))
+if __name__ == '__main__':
+    audio_players = load_tracks()
+    strategy = StrategyOne(audio_players)
+    #revolution_duration = 30 #TODO: Not relevant yet
+    while(True):
+        strategy.update()
+        time.sleep(randint(1,3))
 
 '''
     # Add a conditional here to only do all the below if the current LDR triggers
