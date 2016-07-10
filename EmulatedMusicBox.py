@@ -7,17 +7,6 @@ from random import randint
 from strategy_one import StrategyOne
 from strategy_two import StrategyTwo
 
-'''
-def poll_pin():
-    trigger = SchmittTrigger(4.5, 0.5, LOW)
-    while True:
-        time.sleep(0.010) #10ms
-        voltage = pin[x].get_voltage()
-        edge = trigger.update(voltage)
-        if (edge == RISING):
-            sample.play()
-'''
-
 def create_audio_player(instance, audio_file_path):
     audio_player = instance.media_player_new()
     audio_player.set_media(instance.media_new(audio_file_path))
@@ -40,9 +29,3 @@ if __name__ == '__main__':
     while(True):
         strategy.update()
         time.sleep(randint(1,3))
-
-'''
-    # Add a conditional here to only do all the below if the current LDR triggers
-    #if(LDR_triggered):
-    #if trigger.update(voltage) == RISING:
-'''
