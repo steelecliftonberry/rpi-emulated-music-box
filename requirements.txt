@@ -1,0 +1,4 @@
+Adafruit-GPIO==1.0.0
+Adafruit-MCP3008==1.0.1
+Adafruit-PureIO==0.2.0
+spidev==3.2
