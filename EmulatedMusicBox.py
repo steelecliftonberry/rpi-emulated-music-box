@@ -8,25 +8,6 @@ from strategy_one import StrategyOne
 from strategy_two import StrategyTwo
 
 '''
-class SchmittTrigger:
-    def __init__(self, upper_threshold, lower_threshold, output_threshold=LOW):
-        self.upper_threshold = upper_threshold
-        self.lower_threshold = lower_threshold
-        self.output_level = output_threshold
-
-    def update(self, voltage):
-        transition = NONE
-        if self.output_level == LOW and voltage >= self.upper_threshold:
-            self.output_level = HIGH
-            transition = RISING
-        elif self.output_level == HIGH and voltage >= self.lower_threshold:
-            self.output_level = LOW
-            transition = FALLING
-        return transition
-
-    def output_level(self):
-        return self.output_level
-
 def poll_pin():
     trigger = SchmittTrigger(4.5, 0.5, LOW)
     while True:
