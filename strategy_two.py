@@ -1,29 +1,30 @@
 import random
 
 class StrategyTwo:
-    def __init__(self, audio_players):
-        self.audio_players = audio_players
-        random.shuffle(self.audio_players)
-        self.tracks_playing = []
-        self.tracks_playing_count = 1
-        self.increasing = True
+    def __init__(self, track_manager):
+        self.track_manager = track_manager
+        self.track_map = range(self.track_manager.track_count())
+
+        self.next_track = 0
+        self.direction = 1
+        random.shuffle(self.track_map)
 
     def update(self):
-        print(self.tracks_playing_count)
-        if(self.tracks_playing_count >= 12):
-            self.increasing = False
-        elif(self.tracks_playing_count <= 1):
-            random.shuffle(self.audio_players)
-            self.increasing = True
+        if self.next_track < 0:
+            self.next_track = 0
+            self.direction = 1
+            random.shuffle(self.track_map)
 
-        if(self.increasing):
-            track_to_add = self.audio_players[self.tracks_playing_count]
-            self.tracks_playing.append(track_to_add)
-            track_to_add.play()
-            self.tracks_playing_count += 1
+        elif self.next_track >= len(self.track_map):
+            self.next_track = len(self.track_map) - 1
+            self.direction = -1
+
+        index = self.track_map[self.next_track]
+        if self.direction == 1:
+            print('Playing {0}'.format(self.next_track))
+            self.track_manager.play_track(index)
         else:
-            track_to_stop = self.tracks_playing.pop()
-            track_to_stop.stop() # TODO confirm this works
-            self.tracks_playing_count -= 1
-        return
+            print('Stopping {0}'.format(self.next_track))
+            self.track_manager.stop_track(index)
 
+        self.next_track += self.direction
