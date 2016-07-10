@@ -2,10 +2,13 @@
 # Instructions here: http://blog.computerbacon.com/playing-audio-in-python-with-libvlc.html
 
 import time
-from random import randint
 from strategy_one import StrategyOne
 from strategy_two import StrategyTwo
 from track_manager import TrackManager
+from triggers import SchmittTrigger
+from sources import NormalisedMCPChannel
+import Adafruit_MCP3008
+import Adafruit_GPIO.SPI as SPI
 
 def load_track_paths():
     paths = []
@@ -18,7 +21,10 @@ if __name__ == '__main__':
     tracks = load_track_paths()
     track_manager = TrackManager(tracks)
     strategy = StrategyOne(track_manager)
-    #revolution_duration = 30 #TODO: Not relevant yet
-    while(True):
-        strategy.update()
-        time.sleep(randint(1,3))
+    mcp = Adafruit_MCP3008.MCP3008(spi=SPI.SpiDev(0,0))
+    source = NormalisedMCPChannel(mcp, 0)
+    trigger = SchmittTrigger(0.25, 0.75, source)
+    while True:
+        if trigger.sample() == 'R':
+            strategy.update()
+        time.sleep(0.1)
