@@ -1,4 +1,4 @@
-import libvlc
+import vlc
 
 class TrackManager:
     def __init__(self, paths):
@@ -7,7 +7,7 @@ class TrackManager:
         self.load_tracks()
 
     def load_tracks(self):
-        instance = libvlc.Instance()
+        instance = vlc.Instance()
         for path in self.track_paths:
             player = instance.media_player_new()
             media = instance.media_new(path)

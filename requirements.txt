@@ -1,4 +1,5 @@
 Adafruit-GPIO==1.0.0
 Adafruit-MCP3008==1.0.1
 Adafruit-PureIO==0.2.0
+python-vlc==1.1.2
 spidev==3.2
