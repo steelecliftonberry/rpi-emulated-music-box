@@ -20,7 +20,7 @@ def load_track_paths():
 if __name__ == '__main__':
     tracks = load_track_paths()
     track_manager = TrackManager(tracks)
-    strategy = StrategyOne(track_manager)
+    strategy = StrategyTwo(track_manager)
     mcp = Adafruit_MCP3008.MCP3008(spi=SPI.SpiDev(0,0))
     source = NormalisedMCPChannel(mcp, 0)
     trigger = SchmittTrigger(0.25, 0.75, source)
