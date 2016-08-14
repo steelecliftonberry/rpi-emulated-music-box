@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/home/pi/git/rpi-emulated-music-box/venv/bin/python
 # Instructions here: http://blog.computerbacon.com/playing-audio-in-python-with-libvlc.html
 
 import time
