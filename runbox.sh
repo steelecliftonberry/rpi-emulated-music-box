@@ -7,5 +7,4 @@
 sleep 15
 
 cd /home/pi/git/rpi-emulated-music-box/
-
-/home/pi/git/rpi-emulated-music-box/EmulatedMusicBox.py
+./EmulatedMusicBox.py resources/audio/long
